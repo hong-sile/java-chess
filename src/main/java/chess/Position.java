@@ -12,6 +12,7 @@ public class Position {
         this.rank = Rank.from(rank);
     }
 
+    //수정해야
     public Movement calculateUnitMovement(final Position subtracted) {
         final int fileDiff = file.value() - subtracted.file.value();
         final int rankDiff = rank.value() - subtracted.rank.value();
@@ -30,8 +31,12 @@ public class Position {
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         final Position position = (Position) o;
         return file == position.file && rank == position.rank;
     }
@@ -57,7 +62,7 @@ public class Position {
                 '}';
     }
 
-    public int subRankAndFileAbs(final Position destination){
+    public int subRankAndFileAbs(final Position destination) {
         return Math.abs(rank.value() - destination.rank.value())
                 + Math.abs(file.value() - destination.file.value());
     }

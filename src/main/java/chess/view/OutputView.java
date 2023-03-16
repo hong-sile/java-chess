@@ -21,7 +21,7 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    private static final Map<Class<?>, String> PIECE_VALUE_MAP = new HashMap<>();
+    private static final Map<Class<? extends Piece>, String> PIECE_VALUE_MAP = new HashMap<>();
 
     static {
         PIECE_VALUE_MAP.put(King.class, "k");
@@ -32,15 +32,14 @@ public class OutputView {
         PIECE_VALUE_MAP.put(Pawn.class, "p");
     }
 
-
     public static void printBoard(final Map<Position, Piece> boardMap) {
-        List<List<String>> chessBoard = initalizeBoard();
+        List<List<String>> chessBoard = initializeBoard();
 
         mappingChessBoard(boardMap, chessBoard);
 
         chessBoard.stream()
-                  .map(board -> String.join("", board))
-                  .forEach(System.out::println);
+                .map(board -> String.join("", board))
+                .forEach(System.out::println);
     }
 
     private static void mappingChessBoard(final Map<Position, Piece> boardMap, final List<List<String>> chessBoard) {
@@ -57,16 +56,16 @@ public class OutputView {
         }
     }
 
-    private static List<List<String>> initalizeBoard() {
+    private static List<List<String>> initializeBoard() {
         return IntStream.range(0, 8)
-                        .mapToObj(it -> new ArrayList<>(Collections.nCopies(8, ".")))
-                        .collect(Collectors.toList());
+                .mapToObj(it -> new ArrayList<>(Collections.nCopies(8, ".")))
+                .collect(Collectors.toList());
     }
 
     private static String formatPieceDisplay(final Piece piece) {
         String pieceDisplay = PIECE_VALUE_MAP.get(piece.getClass());
 
-        if(piece.isBlack()){
+        if (piece.isBlack()) {
             return pieceDisplay.toUpperCase();
         }
         return pieceDisplay;

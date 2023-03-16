@@ -3,6 +3,7 @@ package chess;
 import java.util.Arrays;
 
 public enum Movement {
+
     U(0, 1),
     D(0, -1),
     R(1, 0),
